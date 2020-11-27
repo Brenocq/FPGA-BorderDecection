@@ -4,8 +4,8 @@
 // Testbench
 module test();
   
-  localparam inputImage = "../images/test0.hex";
-  localparam outputImage = "../output/test0MinHardware200.hex";
+  localparam inputImage = "../images/icmc.hex";
+  localparam outputImage = "../output/icmcMinHardware200.hex";
   integer fileIn;
   integer fileOut;
   integer read;

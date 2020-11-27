@@ -203,7 +203,7 @@ Também processamos o poly utilizando o threshold de 230 para ver a diferença (
 As duas abordagem tiveram resultados identicos ao utilizar o mesmo threshold, o que era esperado. Nesta abordagem também testamos processar a imagem do icmc com o threshold de 127, o que resultou em ruido na imagem devido à cor nos pixels da imagem.
 
 <p align="center">
- <img src="src/output/icmMaxThroughput127.png" height="200">
+ <img src="src/output/icmcMaxThroughput127.png" height="200">
 </p>
 
 <br>
@@ -242,15 +242,15 @@ pixels[8] = in[(y+1)*(`WIDTH)+x+1];
 
 Abaixo temos à esquerda a unidade de processamento utilizando integer, e à direita utilizando define.
 <p align="center">
- <img src="src/output/maxThroughputUnit.png" height="200">
- <img src="src/output/maxThroughputUnitOptimized.png" height="200">
+ <img src="images/maxThroughputUnit.png" height="200">
+ <img src="images/maxThroughputUnitOptimized.png" height="200">
 </p>
 
 Apesar dessa diferença no esquemático não houve alteração na quantidade de ALMs (Adaptive Logic Module) utilizados. Cada ALM implementa uma LUT de 6 inputs de acordo com a [documentação da FPGA Cyclone V](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/cyclone-v/cv_5v2.pdf).
 
 <p align="center">
- <img src="src/output/maxThroughputStats.png" height="200">
- <img src="src/output/maxThroughputStatsOptimized.png" height="200">
+ <img src="images/maxThroughputStats.png" height="200">
+ <img src="images/maxThroughputStatsOptimized.png" height="200">
 </p>
 
 > Síntese pelo Mentor Precision
@@ -259,13 +259,13 @@ Apesar dessa diferença no esquemático não houve alteração na quantidade de 
 Para realizar o comparativo de uso do hardware simulamos o hardware que seria gerado para uma imagem 9x9. No caso da abordagem que maximiza o thoughput seria gerados 64 unidades de processamento pois as bordas não são processadas. Além disso são gerados conexões para zerar as bordas nas sáidas (neste caso 32 conexões). Abaixo é apresentado o circuito sintetizado. Para melhor visualização também geramos um [pdf](./images/maxThroughput9x9.pdf) através do Quartus.
 
 <p align="center">
- <img src="src/output/maxThroughput9x9.png" height="400">
+ <img src="images/maxThroughput9x9.png" height="400">
 </p>
 
 Através das estatísticas geradas ao definir as conexões em hardware para a FPGA Cyclone V é possível notar que apesar de ter espaço o suficiente de ALMs para o circuito, não é possível mapear todos os pinos de input/output por falta de pinos. Vale ressaltar que a quantidade de pinos que aparece nas estatísticas é a quantidade total de pinos na placa Cyclone V, mas nem todos podem ser utilizados como input/output.
 
 <p align="center">
- <img src="src/output/maxThroughput9x9Stats.png" height="400">
+ <img src="images/maxThroughput9x9Stats.png" height="400">
 </p>
 
 #### Abordagem que minimiza o hardware
@@ -273,13 +273,13 @@ Nesta abordagem apesar da imagem ser 9x9 somente será necessário criar 7 unida
 Obs: É possível contar a quantidade de unidades de processamento pela quantidade de portas OR para o calculo do erosion;
 
 <p align="center">
- <img src="src/output/minHardware9x9.png" height="400">
+ <img src="images/minHardware9x9.png" height="400">
 </p>
 
 Agora com o uso minimizado do hardware foi possível utilizar bem menos ALMs, registradores, e pinos. Entretando, mesmo assim não é possível carregar este código na Cyclone V por falta de pinos de input/output. Para superar este problema poderia ser desenvolvido uma interface para carregar os dados nos registradores utilizando os somente pinos disponíveis de input/output e após o carregamento ser executado em paralelo.
 
 <p align="center">
- <img src="src/output/minHardware9x9.png" height="400">
+ <img src="images/minHardware9x9.png" height="400">
 </p>
 
 ### Conclusão

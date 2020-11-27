@@ -1,6 +1,6 @@
-`define SIZE 81
-`define WIDTH 9
-`define HEIGHT 9
+`define SIZE 76800
+`define WIDTH 320
+`define HEIGHT 240
 `define THRESH 127
 
 // Image Processing

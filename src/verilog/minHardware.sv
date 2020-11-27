@@ -1,4 +1,4 @@
-`define WIDTH 9
+`define WIDTH 320
 `define THRESH 230
 
 module minHardware (
@@ -10,10 +10,13 @@ module minHardware (
 );
 	integer x;
 
-	assign out[0] = 0;
-	assign out[(`WIDTH-1)] = 0;
-	
+	initial begin
+		out[0] = 0;
+		out[(`WIDTH-1)] = 0;
+	end
+
 	always @(posedge clk) begin
+	
 		for(x=1; x<(`WIDTH-1); x=x+1) begin
         	reg[7:0] pixels [0:8];
         	reg[7:0] erosion;
