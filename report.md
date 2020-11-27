@@ -200,7 +200,7 @@ Também processamos o poly utilizando o threshold de 230 para ver a diferença (
  <img src="src/output/test0MaxThroughput127.png" height="200">
 </p>
 
-As duas abordagem tiveram resultados identicos ao utilizar o mesmo threshold, o que era esperado. Nesta abordagem também testamos processar a imagem do icmc com o threshold de 127, o que resultou em ruido na imagem devido à cor nos pixels da imagem.
+As duas abordagem tiveram resultados identicos ao utilizar o mesmo threshold, o que era esperado. Nesta abordagem também testamos processar a imagem do icmc com o threshold de 127, o que resultou em ruido devido à cor nos pixels da imagem.
 
 <p align="center">
  <img src="src/output/icmcMaxThroughput127.png" height="200">
@@ -253,8 +253,6 @@ Apesar dessa diferença no esquemático não houve alteração na quantidade de 
  <img src="images/maxThroughputStatsOptimized.png" height="200">
 </p>
 
-> Síntese pelo Mentor Precision
-
 #### Abordagem que maximiza o throughput
 Para realizar o comparativo de uso do hardware simulamos o hardware que seria gerado para uma imagem 9x9. No caso da abordagem que maximiza o thoughput seria gerados 64 unidades de processamento pois as bordas não são processadas. Além disso são gerados conexões para zerar as bordas nas sáidas (neste caso 32 conexões). Abaixo é apresentado o circuito sintetizado. Para melhor visualização também geramos um [pdf](./images/maxThroughput9x9.pdf) através do Quartus.
 
@@ -279,7 +277,7 @@ Obs: É possível contar a quantidade de unidades de processamento pela quantida
 Agora com o uso minimizado do hardware foi possível utilizar bem menos ALMs, registradores, e pinos. Entretando, mesmo assim não é possível carregar este código na Cyclone V por falta de pinos de input/output. Para superar este problema poderia ser desenvolvido uma interface para carregar os dados nos registradores utilizando os somente pinos disponíveis de input/output e após o carregamento ser executado em paralelo.
 
 <p align="center">
- <img src="images/minHardware9x9.png" height="400">
+ <img src="images/minHardware9x9Stats.png" height="400">
 </p>
 
 ### Conclusão
