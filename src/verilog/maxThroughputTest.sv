@@ -2,8 +2,8 @@
 // Testbench
 module test();
   
-  localparam inputImage = "../images/brasiil.hex";
-  localparam outputImage = "../images/brasiilOut.hex";
+  localparam inputImage = "../images/test0.hex";
+  localparam outputImage = "../output/test0MaxThroughput127.hex";
   integer file;
   integer read;
   integer tmp;
@@ -14,7 +14,7 @@ module test();
   wire [7:0] out [0:(`SIZE-1)];
   
   // Instantiate design under test
-  ImageProcessing imageProcessing(.clk(clk), .in(in), .out(out));
+  maxThroughput mt(.clk(clk), .in(in), .out(out));
   
   always #5 clk=~clk;
   

@@ -4,8 +4,8 @@
 // Testbench
 module test();
   
-  localparam inputImage = "../images/icmc.hex";
-  localparam outputImage = "../images/icmcOut.hex";
+  localparam inputImage = "../images/test0.hex";
+  localparam outputImage = "../output/test0MinHardware200.hex";
   integer fileIn;
   integer fileOut;
   integer read;
@@ -20,7 +20,7 @@ module test();
   wire [7:0] out [0:(`WIDTH-1)];
   
   // Instantiate design under test
-  BorderDetection borderDetection(.clk(clk), .in1(in1), .in2(in2), .in3(in3), .out(out));
+  minHardware mh(.clk(clk), .in1(in1), .in2(in2), .in3(in3), .out(out));
   
   always #5 clk=~clk;
   
@@ -47,16 +47,13 @@ module test();
 
     clk=1;
 	y=0;
-	// TODO: Only working with y for (should work without)
 	for (y=0; y<`HEIGHT; y=y+1) begin
 		@(posedge clk) begin
-			y = y+1;
 			$display("clock");
 			for (x=0; x<`WIDTH; x=x+1) begin
 				in1[x] <= in2[x];
 				in2[x] <= in3[x];
 				read = $fscanf(fileIn,"%h",in3[x]);
-				//$display("Value: %h.", in3[x]);
 			end
 			for (x=0; x<`WIDTH; x=x+1) begin
 			  $fwrite(fileOut, "%h ", out[x]);
